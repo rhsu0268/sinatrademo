@@ -89,9 +89,12 @@ end
 
 get '/push_cake' do
 
-	arr = IO.readlines("cake.list")
+	@cakes = Cake.all
+	if @cakes.empty?
+	
+		arr = IO.readlines("cake.list")
 
-	arr.each_with_index {|val, index| puts "#{val} => #{index}" 
+		arr.each_with_index {|val, index| puts "#{val} => #{index}" 
 
 		puts val
 		@cake = Cake.new(
@@ -100,16 +103,30 @@ get '/push_cake' do
 		)
 		@cake.save
 
-	} 
+		} 
+		
+		"Pushing cakes"
 	#@cake = Cake.new(
 	#	:integer
 	#)
+	end 
+	"You already have cakes in the database!"
 end 
 
 get '/pull_cake' do
 
 	@cakes = Cake.all
 	erb :cake_list
+
+end 
+
+get '/delete_cake' do
+
+	@cakes = Cake.all
+	for c in @cakes;
+		c.destroy
+	end
+	"Deleted cakes"
 
 end 
 
