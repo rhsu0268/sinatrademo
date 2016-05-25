@@ -132,4 +132,56 @@ get '/delete_cake' do
 
 end 
 
+get '/angular' do
+
+	erb :display_angular
+
+end
+
+def self.to_hash
+  all.to_a.map(&:serializable_hash)
+end
+
+get '/pull_cake_json' do
+
+	arr = IO.readlines("cake.list")
+  	#puts arr
+  	#puts "JSON"
+	#puts JSON.generate(arr)
+	@json = JSON.generate(arr)
+
+	dictionary = []
+
+	cake = []
+
+	hash = {}
+
+	arr.each_with_index {|val, index| puts "#{val} => #{index}" 
+
+		cake.push index
+		cake.push val
+		#puts cake
+		dictionary.push cake
+
+		puts hash
+		hash[index.to_s] = val
+
+		cake = []
+	}
+
+	puts "---Hash---"
+	puts hash
+
+	puts "---Dictionary---"
+	puts dictionary
+	@dictionary = dictionary
+
+	@json_with_numbers = JSON.generate(dictionary)
+	@hash = hash 
+
+	content_type :json
+  	@hash.to_json
+end 
+
+
 

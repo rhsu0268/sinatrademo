@@ -1,0 +1,18 @@
+<!doctype html>
+<html ng-app="myApp">
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+		<script src="/javascripts/app.js"></script>
+	</head>
+	<body ng-controller="MyCtrl">
+		<h1>Angular Cake List</h1>
+
+		<button ng-click="loadData()">Load Cake Data</button>
+		<br><br>
+
+		<div ng-repeat="f in items">
+			<li>{{f}}</li>
+		</div>
+		
+	</body>
+</html>
