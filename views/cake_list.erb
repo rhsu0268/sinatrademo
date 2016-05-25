@@ -1,0 +1,27 @@
+<h3>All Cakes</h3>
+<style>
+	table, th, td {
+	    border: 1px solid black;
+	    border-collapse: collapse;
+	}
+	th, td {
+	    padding: 15px;
+	}
+</style>
+
+
+<table style="width:100%">
+  <tr>
+    <td>Number</td>
+    <td>Cake</td>
+  </tr>
+  <% @cakes.each do |cake| %>
+	  <tr>
+	  	<td><%= cake.cake_num %></td>
+	    <td><%= cake.name %></td>
+	  </tr>
+  <% end %>
+</table>
+
+
+<a href="/">Back to Home</a>

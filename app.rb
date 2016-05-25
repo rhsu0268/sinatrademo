@@ -2,6 +2,7 @@ require 'sinatra'
 require 'sinatra/activerecord'
 require './config/environments' #database configuration
 require './models/model' 
+require './models/cake' 
 
 get '/' do
   "Hello, world again!"
@@ -86,6 +87,30 @@ end
 
 
 
+get '/push_cake' do
 
+	arr = IO.readlines("cake.list")
+
+	arr.each_with_index {|val, index| puts "#{val} => #{index}" 
+
+		puts val
+		@cake = Cake.new(
+			:cake_num => index,
+			:name => val 
+		)
+		@cake.save
+
+	} 
+	#@cake = Cake.new(
+	#	:integer
+	#)
+end 
+
+get '/pull_cake' do
+
+	@cakes = Cake.all
+	erb :cake_list
+
+end 
 
 
