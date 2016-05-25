@@ -5,7 +5,7 @@ require './models/model'
 require './models/cake' 
 
 get '/' do
-  "Hello, world again!"
+  erb :home
 
 end 
 
@@ -90,7 +90,8 @@ end
 get '/push_cake' do
 
 	@cakes = Cake.all
-	if @cakes.empty?
+	puts @cakes
+	if @cakes.blank?
 	
 		arr = IO.readlines("cake.list")
 
@@ -109,8 +110,9 @@ get '/push_cake' do
 	#@cake = Cake.new(
 	#	:integer
 	#)
-	end 
-	"You already have cakes in the database!"
+	else  
+		"You already have cakes in the database!"
+	end
 end 
 
 get '/pull_cake' do
