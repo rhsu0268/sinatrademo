@@ -1,0 +1,6 @@
+development:
+  adapter: postgresql
+  database: mission_data
+  username: postgres
+  password: ''
+  host: localhost
